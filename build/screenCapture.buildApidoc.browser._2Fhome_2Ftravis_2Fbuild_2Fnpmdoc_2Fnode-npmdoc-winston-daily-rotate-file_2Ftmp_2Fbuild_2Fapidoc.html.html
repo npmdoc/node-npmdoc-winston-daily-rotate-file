@@ -1,0 +1,325 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/winstonjs/winston-daily-rotate-file#readme">winston-daily-rotate-file (v1.4.6)</a>
+</h1>
+<h4>A transport for winston which logs to a rotating file each day.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.winston-daily-rotate-file">module winston-daily-rotate-file</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.super_">
+            function <span class="apidocSignatureSpan">winston-daily-rotate-file.</span>super_
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston-daily-rotate-file.</span>super_.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.winston-daily-rotate-file.super_">module winston-daily-rotate-file.super_</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.super_.super_">
+            function <span class="apidocSignatureSpan">winston-daily-rotate-file.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.winston-daily-rotate-file.super_.prototype">module winston-daily-rotate-file.super_.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.super_.prototype.formatQuery">
+            function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>formatQuery
+            <span class="apidocSignatureSpan">(query)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.super_.prototype.formatResults">
+            function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>formatResults
+            <span class="apidocSignatureSpan">(results, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.super_.prototype.logException">
+            function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>logException
+            <span class="apidocSignatureSpan">(msg, meta, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.super_.prototype.normalizeQuery">
+            function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>normalizeQuery
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.winston-daily-rotate-file" id="apidoc.module.winston-daily-rotate-file">module winston-daily-rotate-file</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.winston-daily-rotate-file.super_" id="apidoc.element.winston-daily-rotate-file.super_">
+        function <span class="apidocSignatureSpan">winston-daily-rotate-file.</span>super_
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">super_ = function (options) {
+  events.EventEmitter.call(this);
+
+  options        = options        || {};
+  this.silent    = options.silent || false;
+  this.raw       = options.raw    || false;
+  this.name      = options.name   || this.name;
+  this.formatter = options.formatter;
+
+  //
+  // Do not set a default level. When `level` is falsey on any
+  // `Transport` instance, any `Logger` instance uses the
+  // configured level (instead of the Transport level)
+  //
+  this.level = options.level;
+
+  this.handleExceptions = options.handleExceptions || false;
+  this.exceptionsLevel  = options.exceptionsLevel || 'error';
+  this.humanReadableUnhandledException = options.humanReadableUnhandledException || false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.winston-daily-rotate-file.super_" id="apidoc.module.winston-daily-rotate-file.super_">module winston-daily-rotate-file.super_</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.winston-daily-rotate-file.super_.super_" id="apidoc.element.winston-daily-rotate-file.super_.super_">
+        function <span class="apidocSignatureSpan">winston-daily-rotate-file.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.winston-daily-rotate-file.super_.prototype" id="apidoc.module.winston-daily-rotate-file.super_.prototype">module winston-daily-rotate-file.super_.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.winston-daily-rotate-file.super_.prototype.formatQuery" id="apidoc.element.winston-daily-rotate-file.super_.prototype.formatQuery">
+        function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>formatQuery
+        <span class="apidocSignatureSpan">(query)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatQuery = function (query) {
+  return query;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.winston-daily-rotate-file.super_.prototype.formatResults" id="apidoc.element.winston-daily-rotate-file.super_.prototype.formatResults">
+        function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>formatResults
+        <span class="apidocSignatureSpan">(results, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatResults = function (results, options) {
+  return results;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.winston-daily-rotate-file.super_.prototype.logException" id="apidoc.element.winston-daily-rotate-file.super_.prototype.logException">
+        function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>logException
+        <span class="apidocSignatureSpan">(msg, meta, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">logException = function (msg, meta, callback) {
+  var self = this,
+      called;
+
+  if (this.silent) {
+    return callback();
+  }
+
+  function onComplete () {
+    if (!called) {
+      called = true;
+      self.removeListener('logged', onComplete);
+      self.removeListener('error', onComplete);
+      callback();
+    }
+  }
+
+  this.once('logged', onComplete);
+  this.once('error', onComplete);
+  this.log(self.exceptionsLevel, msg, meta, function () { });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.winston-daily-rotate-file.super_.prototype.normalizeQuery" id="apidoc.element.winston-daily-rotate-file.super_.prototype.normalizeQuery">
+        function <span class="apidocSignatureSpan">winston-daily-rotate-file.super_.prototype.</span>normalizeQuery
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">normalizeQuery = function (options) {
+  //
+  // Use options similar to loggly.
+  // [See Loggly Search API](http://wiki.loggly.com/retrieve_events#optional)
+  //
+
+  options = options || {};
+
+  // limit
+  options.rows = options.rows || options.limit || 10;
+
+  // starting row offset
+  options.start = options.start || 0;
+
+  // now
+  options.until = options.until || new Date;
+  if (typeof options.until !== 'object') {
+    options.until = new Date(options.until);
+  }
+
+  // now - 24
+  options.from = options.from || (options.until - (24 * 60 * 60 * 1000));
+  if (typeof options.from !== 'object') {
+    options.from = new Date(options.from);
+  }
+
+
+  // 'asc' or 'desc'
+  options.order = options.order || 'desc';
+
+  // which fields to select
+  options.fields = options.fields;
+
+  return options;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (typeof options === 'function') {
+  callback = options;
+  options = {};
+}
+
+// TODO when maxfilesize rotate occurs
+var file = path.join(this.dirname, this._getFilename());
+options = this.<span class="apidocCodeKeywordSpan">normalizeQuery</span>(options);
+var buff = '';
+var results = [];
+var row = 0;
+
+var stream = fs.createReadStream(file, {
+  encoding: 'utf8'
+});
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
