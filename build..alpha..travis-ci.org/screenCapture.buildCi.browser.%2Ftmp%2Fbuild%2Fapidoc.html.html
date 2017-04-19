@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.winston-daily-rotate-file">
+            function <span class="apidocSignatureSpan"></span>winston-daily-rotate-file
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.winston-daily-rotate-file.super_">
             function <span class="apidocSignatureSpan">winston-daily-rotate-file.</span>super_
             <span class="apidocSignatureSpan">(options)</span>
@@ -128,6 +137,146 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston-daily-rotate-file" id="apidoc.module.winston-daily-rotate-file">module winston-daily-rotate-file</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.winston-daily-rotate-file.winston-daily-rotate-file" id="apidoc.element.winston-daily-rotate-file.winston-daily-rotate-file">
+        function <span class="apidocSignatureSpan"></span>winston-daily-rotate-file
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">winston-daily-rotate-file = function (options) {
+  Transport.call(this, options);
+
+  //
+  // Helper function which throws an `Error` in the event
+  // that any of the rest of the arguments is present in `options`.
+  //
+  function throwIf(target /* , illegal... */) {
+    Array.prototype.slice.call(arguments, 1).forEach(function (name) {
+      if (options[name]) {
+        throw new Error('Cannot set ' + name + ' and ' + target + 'together');
+      }
+    });
+  }
+
+  if (options.filename || options.dirname) {
+    throwIf('filename or dirname', 'stream');
+    this._basename = this.filename = options.filename ?
+      path.basename(options.filename) :
+      'winston.log';
+
+    this.dirname = options.dirname || path.dirname(options.filename);
+    this.options = options.options || {flags: 'a'};
+
+    //
+    // "24 bytes" is maybe a good value for logging lines.
+    //
+    this.options.highWaterMark = this.options.highWaterMark || 24;
+  } else if (options.stream) {
+    throwIf('stream', 'filename', 'maxsize');
+    this._stream = options.stream;
+    var self = this;
+    this._stream.on('error', function (error) {
+      self.emit('error', error);
+    });
+
+    //
+    // We need to listen for drain events when
+    // write() returns false. This can make node
+    // mad at times.
+    //
+    this._stream.setMaxListeners(Infinity);
+  } else {
+    throw new Error('Cannot log to file without filename or stream.');
+  }
+
+  this.json = options.json !== false;
+  this.colorize = options.colorize || false;
+  this.maxsize = options.maxsize || null;
+  this.logstash = options.logstash || null;
+  this.maxFiles = options.maxFiles || null;
+  this.label = options.label || null;
+  this.prettyPrint = options.prettyPrint || false;
+  this.showLevel = options.showLevel === undefined ? true : options.showLevel;
+  this.timestamp = options.timestamp === undefined ? true : options.timestamp;
+  this.datePattern = options.datePattern ? options.datePattern : '.yyyy-MM-dd';
+  this.depth = options.depth || null;
+  this.eol = options.eol || os.EOL;
+  this.maxRetries = options.maxRetries || 2;
+  this.prepend = options.prepend || false;
+  this.localTime = options.localTime || false;
+  this.zippedArchive = options.zippedArchive || false;
+
+  if (this.json) {
+    this.stringify = options.stringify;
+  }
+
+  //
+  // Internal state variables representing the number
+  // of files this instance has created and the current
+  // size (in bytes) of the current logfile.
+  //
+  this._size = 0;
+  this._created = 0;
+  this._buffer = [];
+  this._draining = false;
+  this._failures = 0;
+  this._archive = false;
+
+  // Internal variable which will hold a record of all files
+  // belonging to this transport which are currently in the
+  // log directory in chronological order.
+  //
+  this._currentFiles = function () {
+    //
+    // Only proceed if maxsize is not configured for this transport.
+    if (!this.maxsize) {
+      try {
+        return fs.readdirSync(this.dirname).filter(function (file) {
+          return file.includes(this._basename);
+        }.bind(this)).map(function (file) {
+          return {
+            name: file,
+            time: fs.statSync(path.join(this.dirname, file)).mtime.getTime()
+          };
+        }.bind(this)).sort(function (a, b) {
+          return a.time - b.time;
+        }).map(function (v) {
+          return v.name;
+        });
+      } catch (e) {
+        // directory doesnt exist so there are no files. Do nothing.
+      }
+    }
+    return [];
+  }.bind(this)();
+
+  this._year = this._getTime('year');
+  this._month = this._getTime('month');
+  this._date = this._getTime('date');
+  this._hour = this._getTime('hour');
+  this._minute = this._getTime('minute');
+  this._weekday = weekday[this._getTime('day')];
+  var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhM])\1?/g;
+  var pad = function (val, len) {
+    val = String(val);
+    len = len || 2;
+    while (val.length &lt; len) {
+      val = '0' + val;
+    }
+    return val;
+  };
+
+  this.getFormattedDate = function () {
+    // update the year, month, date... variables
+    this._year = this._getTime('year');
+    this._month = this._getTime('month');
+    this._ ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
